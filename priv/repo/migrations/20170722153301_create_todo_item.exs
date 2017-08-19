@@ -4,7 +4,7 @@ defmodule TodoApp2.Repo.Migrations.CreateTodoItem do
   def change do
     create table(:todo_items) do
       add :body, :text
-      add :todo_list_id, references(:todo_lists, on_delete: :nothing)
+      add :todo_list_id, references(:todo_lists, on_delete: :delete_all)
 
       timestamps()
     end

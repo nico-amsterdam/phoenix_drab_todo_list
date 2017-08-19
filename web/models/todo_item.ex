@@ -2,12 +2,12 @@ defmodule TodoApp2.TodoItem do
   use TodoApp2.Web, :model
 
   @required_fields [:body]
-  @optional_fields [:delete]
+  @optional_fields [:delete_item]
 
   schema "todo_items" do
     field :body, :string
     belongs_to :todo_list, TodoApp2.TodoList
-    field :delete, :boolean, virtual: true
+    field :delete_item, :boolean, virtual: true
 
     timestamps()
   end
@@ -24,7 +24,7 @@ defmodule TodoApp2.TodoItem do
   end
 
   defp mark_for_deletion(changeset) do
-    if get_change(changeset, :delete) do
+    if get_change(changeset, :delete_item) do
       %{changeset | action: :delete}
     else
       changeset

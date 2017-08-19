@@ -1,4 +1,7 @@
-<h2>Listing todo lists</h2>
+<div class="jumbotron">
+  
+  <h2><%= @welcome_text %></h2>
+</div>
 
 <table class="table">
   <thead>
@@ -9,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-<%= for todo_list <- @todo_lists do %>
+   <%= for todo_list <- @todo_lists do %>
     <tr>
       <td><%= todo_list.title %></td>
 
@@ -19,7 +22,7 @@
         <%= link "Delete", to: todo_list_path(@conn, :delete, todo_list), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>
     </tr>
-<% end %>
+   <% end %>
   </tbody>
 </table>
 

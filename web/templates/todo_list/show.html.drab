@@ -7,6 +7,14 @@
     <%= @todo_list.title %>
   </li>
 
+<%= for todo_item <- @todo_list.todo_items do %>
+    <ul>
+      <li><%= todo_item.body %></li>
+
+    </ul>
+<% end %>
+
+
 </ul>
 
 <%= link "Edit", to: todo_list_path(@conn, :edit, @todo_list) %>

@@ -1,7 +1,6 @@
 <h2>New todo list</h2>
 
 <%= render "form.html", changeset: @changeset,
-                        action: todo_list_path(@conn, :create),
-                        new_task: @new_task %>
+                        action: todo_list_path(@conn, :create) %>
 
 <%= link "Back", to: todo_list_path(@conn, :index) %>

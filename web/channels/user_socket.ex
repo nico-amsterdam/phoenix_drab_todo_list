@@ -1,5 +1,6 @@
 defmodule TodoApp2.UserSocket do
   use Phoenix.Socket
+  use Drab.Socket
 
   ## Channels
   # channel "room:*", TodoApp2.RoomChannel

@@ -1,4 +1,5 @@
 <%= form_for @changeset, @action, fn f -> %>
+
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
       <p>Oops, something went wrong! Please check the errors below.</p>
@@ -6,6 +7,7 @@
   <% end %>
 
   <div class="form-group">
+    <input type="hidden" name="id" value=<%="#{f.data.id}"%> />
     <%= label      f, :title, class: "control-label" %>
     <%= text_input f, :title, class: "form-control"  %>
     <%= error_tag  f, :title %>
@@ -14,20 +16,21 @@
   <%= inputs_for f, :todo_items, fn i -> %>
     <div class="form-group">
       <%= label      i, :body, "Task ##{i.index + 1}", class: "control-label" %>
-      <%= autofocus = if i.index == @new_task, do: [autofocus: "autofocus"], else: []
-          text_input i, :body, [class: "form-control"] ++ autofocus %>
+      <%= text_input i, :body, [class: "form-control"] %>
       <%= error_tag  i, :body %>
     </div>
     <%= if i.data.id do %>
       <span class="pull-right">
-        <%= label    i, :delete, "Delete?", class: "control-label" %>
-        <%= checkbox i, :delete %>
+        <%= label    i, :delete_item, "Delete?", class: "control-label" %>
+        <%= checkbox i, :delete_item   %>
       </span>
     <% end %>
   <% end %>
 
+
   <div class="form-group">
-    <%= submit "Submit",   [name: :cmd, value: :save,     class: "btn btn-primary"] %>
-    <%= submit "New task", [name: :cmd, value: :new_task, class: "btn"] %>
+    <button type="button" class="btn" drab-click="ok_action">Ok</button>
+    <button type="button" class="btn" drab-click="new_task_action">New task</button>
+    <div id="output_div" />
   </div>
 <% end %>
